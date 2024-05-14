@@ -1,0 +1,52 @@
+package appshell
+
+templ tpl(opts *Opts) {
+	<div id="app-shell" class="w-full h-full flex flex-col overflow-hidden" data-testid="app-shell">
+		// Header component, conditional rendering with inline classes
+		if opts.Header != nil {
+			<header id="shell-header" class="flex-none z-10">
+				@opts.Header
+			</header>
+		}
+		// Main content area, including optional sidebars
+		<div class="flex-auto w-full h-full flex overflow-hidden">
+			// Left sidebar, conditional rendering with inline classes
+			if opts.SidebarLeft != nil {
+				<aside id="sidebar-left" class="flex-none overflow-x-hidden overflow-y-auto w-auto">
+					@opts.SidebarLeft
+				</aside>
+			}
+			// Page main content
+			<div id="page-content" class="flex-1 overflow-x-hidden flex flex-col">
+				// Page header, conditional rendering with inline classes
+				if opts.PageHeader != nil {
+					<header id="page-header" class="flex-none">
+						@opts.PageHeader
+					</header>
+				}
+				// Main content slot, default with inline classes
+				<main id="content" class="flex-auto">
+					{ children... }
+				</main>
+				// Page footer, conditional rendering with inline classes
+				if opts.PageFooter != nil {
+					<footer id="page-footer" class="flex-none">
+						@opts.PageFooter
+					</footer>
+				}
+			</div>
+			// Right sidebar, conditional rendering with inline classes
+			if opts.SidebarRight != nil {
+				<aside id="sidebar-right" class="flex-none overflow-x-hidden overflow-y-auto w-auto">
+					@opts.SidebarRight
+				</aside>
+			}
+		</div>
+		// Footer component, conditional rendering with inline classes
+		if opts.Footer != nil {
+			<footer id="shell-footer" class="flex-none">
+				@opts.Footer
+			</footer>
+		}
+	</div>
+}

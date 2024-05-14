@@ -1,0 +1,32 @@
+package appbar
+
+import (
+	"fmt"
+)
+
+templ tpl(opts *Opts) {
+	<div
+		class={ fmt.Sprintf("flex flex-col %s %s %s %s %s", opts.Background, opts.Border, opts.Spacing, opts.Padding, opts.Shadow) }
+		role="toolbar"
+		aria-label={ opts.Label }
+		aria-labelledby={ opts.Labelledby }
+	>
+		<div
+			class={ fmt.Sprintf("grid items-center %s %s %s", opts.GridColumns, opts.Gap, opts.RegionRowMain) }
+		>
+			if opts.Lead != nil {
+				<div class="flex-none flex justify-between items-center">
+					@opts.Lead
+				</div>
+			}
+			<div class="flex-auto">
+				{ children... }
+			</div>
+			if opts.Trail != nil {
+				<div class="flex-none flex items-center space-x-4">
+					@opts.Trail
+				</div>
+			}
+		</div>
+	</div>
+}

@@ -1,0 +1,65 @@
+package app
+
+import (
+	"github.com/localrivet/templwind/components/appshell"
+	"github.com/localrivet/templwind/layouts/base"
+	"github.com/localrivet/templwind/components/appbar"
+	"github.com/localrivet/templwind/components/apprail"
+)
+
+templ Index() {
+	@base.New(
+		base.WithTitle("Index"),
+		base.WithStylesheets(
+			"/static/css/output.css",
+		),
+		base.WithHeadScripts(
+			"/static/js/htmx.min.js",
+		),
+		base.WithFooterScripts(
+			"https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js",
+		),
+		base.WithBodyCss("h-full overflow-hidden"),
+	) {
+		@appshell.New(
+			appshell.WithSidebarLeft(SidebarLeft()),
+			appshell.WithSidebarRight(SideBarRight()),
+			appshell.WithFooter(Footer()),
+			appshell.WithHeader(HeaderAppBar()),
+		) {
+			@appbar.New(
+				appbar.WithBorder("border-b"),
+			) {
+				Page App Bar
+			}
+			<h1>Page Content</h1>
+			<p>This is the main content area.</p>
+		}
+	}
+}
+
+templ HeaderAppBar() {
+	@appbar.New(
+		appbar.WithBorder("border-b"),
+	) {
+		Page App Bar
+	}
+}
+
+templ SidebarLeft() {
+	@apprail.New() {
+		<h2>AppRail</h2>
+	}
+}
+
+templ SideBarRight() {
+	@apprail.New() {
+		<h2>AppRail</h2>
+	}
+}
+
+templ Footer() {
+	<footer class="bg-gray-800 text-white p-4">
+		<p>Footer content</p>
+	</footer>
+}

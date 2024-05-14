@@ -1,0 +1,26 @@
+package apprail
+
+import (
+	"fmt"
+)
+
+templ tpl(opts *Opts) {
+	<div
+		class={ fmt.Sprintf("app-rail grid grid-rows-[auto_1fr_auto] overflow-y-auto %s %s %s %s %s", opts.Background, opts.Border, opts.Width, opts.Height, opts.Gap) }
+		data-testid="app-rail"
+	>
+		if opts.Lead != nil {
+			<div class="app-bar-lead box-border">
+				@opts.Lead
+			</div>
+		}
+		<div class="app-bar-default box-border">
+			{ children... }
+		</div>
+		if opts.Trail != nil {
+			<div class="app-bar-trail box-border">
+				@opts.Trail
+			</div>
+		}
+	</div>
+}
