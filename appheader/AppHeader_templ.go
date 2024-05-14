@@ -11,7 +11,7 @@ import "io"
 import "bytes"
 
 import (
-	"github.com/localrivet/templwind/link"
+	"github.com/localrivet/templwind/components/link"
 )
 
 func tpl(opts *Opts) templ.Component {

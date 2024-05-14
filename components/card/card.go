@@ -2,8 +2,8 @@ package card
 
 import (
 	"github.com/localrivet/templwind"
-	"github.com/localrivet/templwind/indicator"
-	"github.com/localrivet/templwind/link"
+	"github.com/localrivet/templwind/components/indicator"
+	"github.com/localrivet/templwind/components/link"
 
 	"github.com/a-h/templ"
 )

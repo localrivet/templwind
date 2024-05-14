@@ -6,7 +6,7 @@ import (
 	"github.com/a-h/templ"
 	"github.com/google/uuid"
 	"github.com/localrivet/templwind"
-	"github.com/localrivet/templwind/link"
+	"github.com/localrivet/templwind/components/link"
 	"github.com/localrivet/templwind/utils"
 )
 
