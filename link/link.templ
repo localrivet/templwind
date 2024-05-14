@@ -1,0 +1,51 @@
+package link
+
+import (
+	"fmt"
+	"strings"
+)
+
+templ tpl(opts *Opts) {
+	<div
+		if opts.ID != "" {
+			id="{ opts.ID }"
+		}
+		if opts != nil {
+			if len(opts.HXTrigger) > 0 {
+				hx-trigger={ strings.Join(opts.HXTrigger, ",") }
+			}
+			if opts.HXSwap != "" {
+				hx-swap={ opts.HXSwap.String() }
+			}
+			if opts.HXTarget != "" {
+				hx-target={ opts.HXTarget }
+			}
+			if opts.HXGet != "" || opts.HXPost != "" || opts.HXPut != "" ||  opts.HXPatch != "" ||  opts.HXDelete != "" {
+				:class="{ 'cursor-pointer hover:shadow-xl': true }"
+				if opts.HXGet != "" {
+					hx-get={ opts.HXGet }
+				}
+				if opts.HXPost != "" {
+					hx-post={ opts.HXPost }
+				}
+				if opts.HXPut != "" {
+					hx-put={ opts.HXPut }
+				}
+				if opts.HXPatch != "" {
+					hx-patch={ opts.HXPatch }
+				}
+				if opts.HXDelete != "" {
+					hx-delete={ opts.HXDelete }
+				}
+				if opts.HXPushURL {
+					hx-push-url="true"
+				}
+			}
+			if opts.XOn != "" {
+				x-on:htmx:trigger={ fmt.Sprintf("%s", opts.XOn) }
+			}
+		}
+	>
+		{ children... }
+	</div>
+}
