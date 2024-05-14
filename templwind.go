@@ -1,6 +1,8 @@
 package templwind
 
-import "github.com/a-h/templ"
+import (
+	"github.com/a-h/templ"
+)
 
 // Component interface with generic methods
 type Component[T any] interface {
@@ -14,14 +16,11 @@ type OptFunc[T any] func(*T)
 
 // New creates a new templ.Component with the given options
 func New[T any](defaultOpts func() *T, tpl func(*T) templ.Component, opts ...OptFunc[T]) templ.Component {
-	opt := defaultOpts()
-	for _, optFn := range opts {
-		optFn(opt)
-	}
+	opt := BuildOpts(defaultOpts, opts...)
 	return tpl(opt)
 }
 
-// NewWithOpt creates a new templ.Component with the given opt
+// NewWithOpts creates a new templ.Component with the given opt
 func NewWithOpts[T any](tpl func(*T) templ.Component, opts *T) templ.Component {
 	return tpl(opts)
 }
