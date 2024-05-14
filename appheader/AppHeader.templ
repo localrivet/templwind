@@ -21,7 +21,7 @@ templ tpl(opts *Opts) {
 		</div>
 		if !opts.HideOnMobile {
 			<span class="text-xs z-50">
-				{ children... }
+				{ opts.Title }
 			</span>
 		}
 	</div>

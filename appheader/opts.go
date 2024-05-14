@@ -36,6 +36,7 @@ func defaultOpts() *Opts {
 	return &Opts{
 		ID:           utils.ToCamel(fmt.Sprintf("appHeader-%s", uuid.New().String())),
 		HideOnMobile: false,
+		Title:        "App Header",
 	}
 }
 

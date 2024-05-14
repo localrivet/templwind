@@ -1,0 +1,17 @@
+package exmaples
+
+import "github.com/localrivet/templwind/appheader"
+
+templ Index() {
+	<html>
+		<head>
+			<title>Index</title>
+		</head>
+		<body>
+			@appheader.New(
+				appheader.WithTitle("Home Page"),
+			)
+			<p>Index page</p>
+		</body>
+	</html>
+}
