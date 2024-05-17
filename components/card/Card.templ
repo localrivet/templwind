@@ -26,6 +26,7 @@ templ tpl(opts *Opts) {
 		if opts.Lead != "" {
 			<p class="text-sm text-gray-700 dark:text-gray-400">{ opts.Lead }</p>
 		}
+		{ children... }
 	</div>
 	if len(opts.Components) > 0 {
 		for _, c := range opts.Components {
