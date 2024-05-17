@@ -1,4 +1,0 @@
-Page App Bar
- <div class=\"p-4\" hx-get=\"
-\" hx-target=\"#sidenav\" hx-trigger=\"load\" hx-swap=\"outerHTML\">
-<h1>Page Content</h1><p>This is the main content area.</p></div>

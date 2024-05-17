@@ -11,19 +11,28 @@ templ tpl(opts *Opts) {
 		data-testid="app-shell"
 	>
 		if opts.Header != nil {
-			<header id="shell-header" class={ utils.MergeClasses("flex-none z-10", opts.HeaderClasses) }>
+			<header
+				id="shell-header"
+				class={ utils.MergeClasses("flex-none z-10", opts.HeaderClasses) }
+			>
 				@opts.Header
 			</header>
 		}
 		<div class="flex-auto w-full h-full flex overflow-hidden">
 			if opts.SidebarLeft != nil {
-				<aside id="sidebar-left" class={ utils.MergeClasses("flex-none overflow-x-hidden overflow-y-auto w-auto", opts.SidebarLeftClasses) }>
+				<aside
+					id="sidebar-left"
+					class={ utils.MergeClasses("flex-none overflow-x-hidden overflow-y-auto w-auto", opts.SidebarLeftClasses) }
+				>
 					@opts.SidebarLeft
 				</aside>
 			}
 			<div id="page-content" class="flex-1 overflow-x-hidden flex flex-col">
 				if opts.PageHeader != nil {
-					<header id="page-header" class={ utils.MergeClasses("flex-none", opts.PageHeaderClasses) }>
+					<header
+						id="page-header"
+						class={ utils.MergeClasses("flex-none", opts.PageHeaderClasses) }
+					>
 						@opts.PageHeader
 					</header>
 				}
@@ -31,19 +40,28 @@ templ tpl(opts *Opts) {
 					{ children... }
 				</main>
 				if opts.PageFooter != nil {
-					<footer id="page-footer" class={ utils.MergeClasses("flex-none", opts.PageFooterClasses) }>
+					<footer
+						id="page-footer"
+						class={ utils.MergeClasses("flex-none", opts.PageFooterClasses) }
+					>
 						@opts.PageFooter
 					</footer>
 				}
 			</div>
 			if opts.SidebarRight != nil {
-				<aside id="sidebar-right" class={ utils.MergeClasses("flex-none overflow-x-hidden overflow-y-auto w-auto", opts.SidebarRightClasses) }>
+				<aside
+					id="sidebar-right"
+					class={ utils.MergeClasses("flex-none overflow-x-hidden overflow-y-auto w-auto", opts.SidebarRightClasses) }
+				>
 					@opts.SidebarRight
 				</aside>
 			}
 		</div>
 		if opts.Footer != nil {
-			<footer id="shell-footer" class={ utils.MergeClasses("flex-none", opts.FooterClasses) }>
+			<footer
+				id="shell-footer"
+				class={ utils.MergeClasses("flex-none", opts.FooterClasses) }
+			>
 				@opts.Footer
 			</footer>
 		}

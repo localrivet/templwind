@@ -1,6 +1,0 @@
-App Bar
-<div class=\"grid grid-cols-[auto_1fr] h-full bg-surface-50-900-token border-r border-surface-500/30\">
-<div class=\"min-w-48 overflow-y-auto\">
-</div></div>
-<h2>AppRail</h2>
-<footer class=\"bg-gray-800 text-white p-4\"><p>Footer content</p></footer>
