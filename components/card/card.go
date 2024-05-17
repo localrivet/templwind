@@ -3,7 +3,6 @@ package card
 import (
 	"github.com/localrivet/templwind"
 	"github.com/localrivet/templwind/components/indicator"
-	"github.com/localrivet/templwind/components/link"
 
 	"github.com/a-h/templ"
 )
@@ -11,7 +10,6 @@ import (
 type Opts struct {
 	ID            string
 	Class         string
-	LinkOpts      *link.Opts
 	Title         string
 	SubTitle      string
 	Lead          string
@@ -50,12 +48,6 @@ func ID(id string) templwind.OptFunc[Opts] {
 func Class(class string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Class = class
-	}
-}
-
-func LinkOpts(linkOpts ...templwind.OptFunc[link.Opts]) templwind.OptFunc[Opts] {
-	return func(o *Opts) {
-		o.LinkOpts = link.WithOpts(linkOpts...)
 	}
 }
 

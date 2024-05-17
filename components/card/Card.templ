@@ -2,20 +2,9 @@ package card
 
 import (
 	"github.com/localrivet/templwind/components/indicator"
-	"github.com/localrivet/templwind/components/link"
 )
 
 templ tpl(opts *Opts) {
-	if opts.LinkOpts != nil {
-		@link.NewWithOpts(opts.LinkOpts) {
-			@body(opts)
-		}
-	} else {
-		@body(opts)
-	}
-}
-
-templ body(opts *Opts) {
 	<div class="p-4">
 		if opts.HeadIndicator != nil {
 			<div class="grid grid-cols-3 gap-4">
