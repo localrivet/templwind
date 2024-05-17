@@ -1,0 +1,12 @@
+<div class=\"
+\" data-testid=\"app-rail\">
+<div class=\"app-bar-lead box-border\">
+</div>
+<div class=\"app-bar-default flex flex-col w-full box-border divide-y\">
+<div class=\"w-full flex flex-col items-center justify-center space-y-1 p-2 text-xs text-center dark:text-white\">
+<span>
+</span></div>
+</div>
+<div class=\"app-bar-trail box-border\">
+</div>
+</div>

@@ -1,0 +1,26 @@
+<div id=\"app-shell\" class=\"w-full h-full flex flex-col overflow-hidden bg-slate-100 dark:bg-slate-700\" data-testid=\"app-shell\">
+<header id=\"shell-header\" class=\"
+\">
+</header>
+<div class=\"flex-auto w-full h-full flex overflow-hidden\">
+<aside id=\"sidebar-left\" class=\"
+\">
+</aside>
+<div id=\"page-content\" class=\"flex-1 overflow-x-hidden flex flex-col\">
+<header id=\"page-header\" class=\"
+\">
+</header>
+<main id=\"content\" class=\"flex-auto\">
+</main>
+<footer id=\"page-footer\" class=\"
+\">
+</footer>
+</div>
+<aside id=\"sidebar-right\" class=\"
+\">
+</aside>
+</div>
+<footer id=\"shell-footer\" class=\"
+\">
+</footer>
+</div>

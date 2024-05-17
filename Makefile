@@ -27,12 +27,12 @@ test:
 ## css: build tailwindcss
 .PHONY: css
 css:
-	npx tailwindcss -i docs/assets/css/input.css -o docs/assets/css/output.css --minify
+	tailwindcss -i docs/assets/css/input.css -o docs/assets/css/output.css --minify
 
 ## css-watch: watch build tailwindcss
 .PHONY: css-watch
 css-watch:
-	npx tailwindcss -i docs/assets/css/input.css -o docs/assets/css/output.css --watch
+	tailwindcss -c tailwind.config.js -i docs/assets/css/input.css -o docs/assets/css/output.css --watch
 
 ## templ-generate: generate new template
 .PHONY: templ-generate
