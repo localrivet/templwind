@@ -1,0 +1,19 @@
+package app
+
+import (
+	"github.com/localrivet/templwind/htmx"
+	"github.com/localrivet/templwind/components/appshell"
+	"github.com/localrivet/templwind/layouts/base"
+)
+
+templ tpl(opts *Opts) {
+	if !htmx.IsHtmxRequest(opts.EchoCtx) {
+		@base.New(opts.BaseOpts...) {
+			@appshell.New(opts.AppShellOpts...) {
+				{ children... }
+			}
+		}
+	} else {
+		{ children... }
+	}
+}

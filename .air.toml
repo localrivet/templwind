@@ -1,12 +1,12 @@
 root = "."
-tmp_dir = "./demo/tmp"
+tmp_dir = "./docs/tmp"
 
 [build]
 args_bin = ["serve"]
-bin = "./demo/tmp/main"
-cmd = "./kill_app.sh && templ generate && ./kill_app.sh && go build -o ./demo/tmp/main ./demo"
+bin = "./docs/tmp/main"
+cmd = "./kill_app.sh && templ generate && ./kill_app.sh && go build -o ./docs/tmp/main ./docs"
 delay = 1000
-exclude_dir = ["assets", "tmp", "vendor"]
+exclude_dir = ["assets", "tmp", "vendor", "tpl"]
 exclude_file = []
 exclude_regex = [".*_templ.go"]
 exclude_unchanged = false

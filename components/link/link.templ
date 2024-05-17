@@ -6,7 +6,7 @@ import (
 )
 
 templ tpl(opts *Opts) {
-	<div
+	<a
 		if opts.ID != "" {
 			id="{ opts.ID }"
 		}
@@ -23,6 +23,7 @@ templ tpl(opts *Opts) {
 			if opts.HXGet != "" || opts.HXPost != "" || opts.HXPut != "" ||  opts.HXPatch != "" ||  opts.HXDelete != "" {
 				:class="{ 'cursor-pointer hover:shadow-xl': true }"
 				if opts.HXGet != "" {
+					href={ templ.SafeURL(opts.HXGet) }
 					hx-get={ opts.HXGet }
 				}
 				if opts.HXPost != "" {
@@ -41,11 +42,11 @@ templ tpl(opts *Opts) {
 					hx-push-url="true"
 				}
 			}
-			if opts.XOn != "" {
-				x-on:htmx:trigger={ fmt.Sprintf("%s", opts.XOn) }
+			if opts.XOnTrigger != "" {
+				x-on:htmx:trigger={ fmt.Sprintf("%s", opts.XOnTrigger) }
 			}
 		}
 	>
 		{ children... }
-	</div>
+	</a>
 }

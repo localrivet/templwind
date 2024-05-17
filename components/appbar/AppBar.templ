@@ -1,32 +1,37 @@
 package appbar
 
 import (
-	"fmt"
+	"github.com/localrivet/templwind/utils"
 )
 
 templ tpl(opts *Opts) {
 	<div
-		class={ fmt.Sprintf("flex flex-col %s %s %s %s %s", opts.Background, opts.Border, opts.Spacing, opts.Padding, opts.Shadow) }
+		class={ utils.MergeClasses("app-bar flex flex-col bg-surface-100-800-token space-y-4 p-4 w-full", opts.AppBarClasses) }
 		role="toolbar"
-		aria-label={ opts.Label }
-		aria-labelledby={ opts.Labelledby }
+		aria-label="Main navigation toolbar"
+		data-testid="app-bar"
 	>
 		<div
-			class={ fmt.Sprintf("grid items-center %s %s %s", opts.GridColumns, opts.Gap, opts.RegionRowMain) }
+			class="app-bar-row-main grid items-center grid-cols-[auto_1fr_auto] gap-4"
 		>
 			if opts.Lead != nil {
-				<div class="flex-none flex justify-between items-center">
+				<div class={ utils.MergeClasses("app-bar-slot-lead flex-none flex justify-between items-center", opts.LeadClasses) }>
 					@opts.Lead
 				</div>
 			}
-			<div class="flex-auto">
+			<div class="app-bar-slot-default flex-auto">
 				{ children... }
 			</div>
 			if opts.Trail != nil {
-				<div class="flex-none flex items-center space-x-4">
+				<div class={ utils.MergeClasses("app-bar-slot-trail flex-none flex items-center space-x-4", opts.TrailClasses) }>
 					@opts.Trail
 				</div>
 			}
 		</div>
+		if opts.Headline != nil {
+			<div class={ utils.MergeClasses("app-bar-row-headline", opts.HeadlineClasses) }>
+				@opts.Headline
+			</div>
+		}
 	</div>
 }

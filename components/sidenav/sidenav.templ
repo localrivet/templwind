@@ -1,0 +1,44 @@
+package sidenav
+
+import (
+	"github.com/localrivet/templwind/components/link"
+	"github.com/localrivet/templwind/utils"
+)
+
+templ tpl(opts *Opts) {
+	<section
+		if opts.ID != "" {
+			id={ opts.ID }
+		}
+		class={ utils.MergeClasses("p-4 h-full pb-20 space-y-4 bg-slate-200 dark:bg-slate-800", opts.ContainerClass) }
+	>
+		{ children... }
+		for i, segment := range opts.Submenu {
+			<!-- Title -->
+			<p class="font-bold text-2xl text-slate-800 dark:text-white">{ segment.Title }</p>
+			<!-- Nav List -->
+			if segment.Submenu != nil {
+				<nav class="list-nav text-slate-800 dark:text-white">
+					<ul>
+						for _, item := range segment.Submenu {
+							<li>
+								@link.NewWithOpts(item) {
+									<span class="flex-auto">{ item.Title }</span>
+									if item.Badge != nil {
+										<span class="badge variant-filled-secondary">
+											@item.Badge
+										</span>
+									}
+								}
+							</li>
+						}
+					</ul>
+				</nav>
+				<!-- Divider -->
+				if i + 1 < len(segment.Submenu) {
+					<hr class="!my-6 opacity-50"/>
+				}
+			}
+		}
+	</section>
+}

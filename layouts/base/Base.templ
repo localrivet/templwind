@@ -1,31 +1,39 @@
 package base
 
+import (
+	"github.com/localrivet/templwind/htmx"
+)
+
 templ tpl(opts *Opts) {
-	<!DOCTYPE html>
-	<html lang="en" class="h-full">
-		<head>
-			<meta charset="utf-8"/>
-			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-			<title>{ opts.Title }</title>
-			if opts.Meta != nil {
-				@opts.Meta
-			}
-			if opts.Favicon != "" {
-				<link rel="icon" href={ opts.Favicon } type="image/svg+xml"/>
-			}
-			for _, css := range opts.Stylesheets {
-				<link rel="stylesheet" href={ css }/>
-			}
-			for _, js := range opts.HeadScripts {
-				<script defer src={ js }></script>
-			}
-		</head>
-		<body class={ opts.BodyCss }>
-			{ children... }
-			for _, js := range opts.FooterScripts {
-				<script defer src={ js }></script>
-			}
-		</body>
-	</html>
+	if !htmx.IsHtmxRequest(opts.EchoCtx) {
+		<!DOCTYPE html>
+		<html lang="en" class="h-full">
+			<head>
+				<meta charset="utf-8"/>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+				<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+				<title>{ opts.Title }</title>
+				if opts.Meta != nil {
+					@opts.Meta
+				}
+				if opts.Favicon != "" {
+					<link rel="icon" href={ opts.Favicon } type="image/svg+xml"/>
+				}
+				for _, css := range opts.Stylesheets {
+					<link rel="stylesheet" href={ css }/>
+				}
+				for _, js := range opts.HeadScripts {
+					<script defer src={ js }></script>
+				}
+			</head>
+			<body class={ opts.BodyCss }>
+				{ children... }
+				for _, js := range opts.FooterScripts {
+					<script defer src={ js }></script>
+				}
+			</body>
+		</html>
+	} else {
+		{ children... }
+	}
 }

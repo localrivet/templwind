@@ -30,9 +30,9 @@ func NewWithOpts(opt *Opts) templ.Component {
 	return templwind.NewWithOpts(tpl, opt)
 }
 
-// BuildOpts builds the options with the given opt
-func BuildOpts(opts ...templwind.OptFunc[Opts]) *Opts {
-	return templwind.BuildOpts(defaultOpts, opts...)
+// WithOpts builds the options with the given opt
+func WithOpts(opts ...templwind.OptFunc[Opts]) *Opts {
+	return templwind.WithOpts(defaultOpts, opts...)
 }
 
 func defaultOpts() *Opts {
@@ -41,55 +41,55 @@ func defaultOpts() *Opts {
 	}
 }
 
-func WithID(id string) templwind.OptFunc[Opts] {
+func ID(id string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.ID = id
 	}
 }
 
-func WithClass(class string) templwind.OptFunc[Opts] {
+func Class(class string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Class = class
 	}
 }
 
-func WithLinkOpts(linkOpts ...templwind.OptFunc[link.Opts]) templwind.OptFunc[Opts] {
+func LinkOpts(linkOpts ...templwind.OptFunc[link.Opts]) templwind.OptFunc[Opts] {
 	return func(o *Opts) {
-		o.LinkOpts = link.BuildOpts(linkOpts...)
+		o.LinkOpts = link.WithOpts(linkOpts...)
 	}
 }
 
-func WithTitle(title string) templwind.OptFunc[Opts] {
+func Title(title string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Title = title
 	}
 }
 
-func WithSubTitle(subTitle string) templwind.OptFunc[Opts] {
+func SubTitle(subTitle string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.SubTitle = subTitle
 	}
 }
 
-func WithLead(lead string) templwind.OptFunc[Opts] {
+func Lead(lead string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Lead = lead
 	}
 }
 
-func WithHeadIndicator(headIndicator *indicator.Opts) templwind.OptFunc[Opts] {
+func HeadIndicator(headIndicator *indicator.Opts) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.HeadIndicator = headIndicator
 	}
 }
 
-func WithComponents(components ...templ.Component) templwind.OptFunc[Opts] {
+func Components(components ...templ.Component) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Components = components
 	}
 }
 
-func WithButtons(buttons templ.Component) templwind.OptFunc[Opts] {
+func Buttons(buttons templ.Component) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Buttons = buttons
 	}

@@ -1,0 +1,31 @@
+package views
+
+import (
+	"fmt"
+
+	"github.com/labstack/echo/v4"
+	"github.com/localrivet/templwind/components"
+	"github.com/localrivet/templwind/components/appbar"
+	"github.com/localrivet/templwind/docs/modules/docs/layout"
+)
+
+templ Index(e echo.Context, section string) {
+	@layout.CommonLayout(e) {
+		@components.AppBar(
+			appbar.AppBarClasses("border-b"),
+		) {
+			Page App Bar
+		}
+		<div
+			class="p-4"
+			hx-get={ fmt.Sprintf("/docs/menu/%s", section) }
+			hx-target="#sidenav"
+			hx-trigger="load"
+			hx-swap="outerHTML"
+		>
+			{ section }
+			<h1>Page Content</h1>
+			<p>This is the main content area.</p>
+		</div>
+	}
+}

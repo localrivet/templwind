@@ -8,6 +8,8 @@ import (
 	"github.com/localrivet/templwind/components/appshell"
 	"github.com/localrivet/templwind/components/card"
 	"github.com/localrivet/templwind/components/dropdown"
+	"github.com/localrivet/templwind/components/link"
+	"github.com/localrivet/templwind/components/sidenav"
 )
 
 func AppBar(opts ...templwind.OptFunc[appbar.Opts]) templ.Component {
@@ -22,10 +24,18 @@ func AppShell(opts ...templwind.OptFunc[appshell.Opts]) templ.Component {
 	return appshell.New(opts...)
 }
 
+func Dropdown(opts ...templwind.OptFunc[dropdown.Opts]) templ.Component {
+	return dropdown.New(opts...)
+}
+
 func Card(opts ...templwind.OptFunc[card.Opts]) templ.Component {
 	return card.New(opts...)
 }
 
-func Dropdown(opts ...templwind.OptFunc[dropdown.Opts]) templ.Component {
-	return dropdown.New(opts...)
+func Link(opts ...templwind.OptFunc[link.Opts]) templ.Component {
+	return link.New(opts...)
+}
+
+func Sidenav(opts ...templwind.OptFunc[sidenav.Opts]) templ.Component {
+	return sidenav.New(opts...)
 }

@@ -1,0 +1,71 @@
+package layout
+
+import (
+	"github.com/labstack/echo/v4"
+	"github.com/localrivet/templwind/components"
+	"github.com/localrivet/templwind/components/appbar"
+	"github.com/localrivet/templwind/components/appshell"
+	"github.com/localrivet/templwind/components/sidenav"
+	"github.com/localrivet/templwind/layouts"
+	"github.com/localrivet/templwind/layouts/base"
+	"github.com/localrivet/templwind/layouts/app"
+)
+
+templ CommonLayout(e echo.Context) {
+	@layouts.AppLayout(
+		app.EchoCtx(e),
+		app.BaseOpts(
+			base.EchoCtx(e),
+			base.Title("Index"),
+			base.Stylesheets(
+				"/static/css/output.css",
+			),
+			base.HeadScripts(
+				"/static/js/htmx.min.js",
+			),
+			base.FooterScripts(
+				"https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js",
+			),
+			base.BodyCss("h-full overflow-hidden"),
+		),
+		app.AppShellOpts(
+			appshell.SidebarLeft(SidebarLeft()),
+			// appshell.WithSidebarRight(SideBarRight()),
+			appshell.Footer(Footer()),
+			appshell.Header(HeaderAppBar()),
+		),
+	) {
+		{ children... }
+	}
+}
+
+templ HeaderAppBar() {
+	@components.AppBar(
+		appbar.AppBarClasses("border-b"),
+	) {
+		App Bar
+	}
+}
+
+templ SidebarLeft() {
+	<div class="grid grid-cols-[auto_1fr] h-full bg-surface-50-900-token border-r border-surface-500/30">
+		@components.AppRail(RailMenu)
+		<div class="min-w-48 overflow-y-auto">
+			@sidenav.New(
+				SideMenu["docs"],
+			)
+		</div>
+	</div>
+}
+
+templ SideBarRight() {
+	@components.AppRail() {
+		<h2>AppRail</h2>
+	}
+}
+
+templ Footer() {
+	<footer class="bg-gray-800 text-white p-4">
+		<p>Footer content</p>
+	</footer>
+}

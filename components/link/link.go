@@ -6,34 +6,38 @@ import (
 )
 
 type Opts struct {
-	ID        string
-	Class     string
-	HXGet     string
-	HXPost    string
-	HXPut     string
-	HXPatch   string
-	HXDelete  string
-	Target    string
-	HXSwap    Swap
-	HXTarget  string
-	HXTrigger []string
-	HXPushURL bool
-	XOn       string
+	ID         string
+	Title      string
+	Badge      templ.Component
+	Icon       string
+	Class      string
+	HXGet      string
+	HXPost     string
+	HXPut      string
+	HXPatch    string
+	HXDelete   string
+	Target     string
+	HXSwap     Swap
+	HXTarget   string
+	HXTrigger  []string
+	HXPushURL  bool
+	XOnTrigger string
+	Submenu    []*Opts
 }
 
-// NewDropdown creates a new Dropdown component
+// New creates a new component
 func New(opts ...templwind.OptFunc[Opts]) templ.Component {
 	return templwind.New(defaultOpts, tpl, opts...)
 }
 
-// NewDropdownWithOpt creates a new Dropdown component with the given opts
+// NewWithOpts creates a new component with the given opts
 func NewWithOpts(opts *Opts) templ.Component {
 	return templwind.NewWithOpts(tpl, opts)
 }
 
-// BuildDropdownOpts builds the options for Dropdown component
-func BuildOpts(opts ...templwind.OptFunc[Opts]) *Opts {
-	return templwind.BuildOpts(defaultOpts, opts...)
+// WithOpts builds the options for the component
+func WithOpts(opts ...templwind.OptFunc[Opts]) *Opts {
+	return templwind.WithOpts(defaultOpts, opts...)
 }
 
 func defaultOpts() *Opts {
@@ -43,49 +47,67 @@ func defaultOpts() *Opts {
 	}
 }
 
-func WithID(id string) templwind.OptFunc[Opts] {
+func ID(id string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.ID = id
 	}
 }
 
-func WithClass(class string) templwind.OptFunc[Opts] {
+func Title(title string) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.Title = title
+	}
+}
+
+func Badge(badge templ.Component) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.Badge = badge
+	}
+}
+
+func Icon(icon string) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.Icon = icon
+	}
+}
+
+func Class(class string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Class = class
 	}
 }
 
-func WithHXGet(href string) templwind.OptFunc[Opts] {
+func HXGet(href string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.HXGet = href
 	}
 }
 
-func WithHXPost(href string) templwind.OptFunc[Opts] {
+func HXPost(href string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.HXPost = href
 	}
 }
 
-func WithHXPut(href string) templwind.OptFunc[Opts] {
+func HXPut(href string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.HXPut = href
 	}
 }
 
-func WithHXPatch(href string) templwind.OptFunc[Opts] {
+func HXPatch(href string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.HXPatch = href
 	}
 }
 
-func WithHXDelete(href string) templwind.OptFunc[Opts] {
+func HXDelete(href string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.HXDelete = href
 	}
 }
 
-func WithTarget(target string) templwind.OptFunc[Opts] {
+func Target(target string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Target = target
 	}
@@ -116,32 +138,38 @@ const (
 	None Swap = "none"
 )
 
-func WithHXSwap(hxSwap Swap) templwind.OptFunc[Opts] {
+func HXSwap(hxSwap Swap) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.HXSwap = hxSwap
 	}
 }
 
-func WithHXTarget(hxTarget string) templwind.OptFunc[Opts] {
+func HXTarget(hxTarget string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.HXTarget = hxTarget
 	}
 }
 
-func WithHXTrigger(hxTrigger []string) templwind.OptFunc[Opts] {
+func HXTrigger(hxTrigger []string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.HXTrigger = hxTrigger
 	}
 }
 
-func WithHXPushURL(hxPushURL bool) templwind.OptFunc[Opts] {
+func HXPushURL(hxPushURL bool) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.HXPushURL = hxPushURL
 	}
 }
 
-func WithXOn(xOn string) templwind.OptFunc[Opts] {
+func XOnTrigger(xOnTrigger string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
-		opts.XOn = xOn
+		opts.XOnTrigger = xOnTrigger
+	}
+}
+
+func Submenu(linkOpts ...*Opts) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.Submenu = append(opts.Submenu, linkOpts...)
 	}
 }

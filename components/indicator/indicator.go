@@ -20,20 +20,20 @@ func NewWithOpts(opt *Opts) templ.Component {
 	return templwind.NewWithOpts(tpl, opt)
 }
 
-// BuildOpts builds the options with the given opt
-func BuildOpts(opts ...templwind.OptFunc[Opts]) *Opts {
-	return templwind.BuildOpts(defaultOpts, opts...)
+// WithOpts builds the options with the given opt
+func WithOpts(opts ...templwind.OptFunc[Opts]) *Opts {
+	return templwind.WithOpts(defaultOpts, opts...)
 }
 
 func defaultOpts() *Opts {
 	return &Opts{}
 }
 
-func WithIsUp(opts *Opts) {
+func IsUp(opts *Opts) {
 	opts.IsUp = true
 }
 
-func WithValue(value string) templwind.OptFunc[Opts] {
+func Value(value string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Value = value
 	}

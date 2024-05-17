@@ -1,50 +1,49 @@
 package appshell
 
+import (
+	"github.com/localrivet/templwind/utils"
+)
+
 templ tpl(opts *Opts) {
-	<div id="app-shell" class="w-full h-full flex flex-col overflow-hidden" data-testid="app-shell">
-		// Header component, conditional rendering with inline classes
+	<div
+		id="app-shell"
+		class="w-full h-full flex flex-col overflow-hidden bg-slate-100 dark:bg-slate-700"
+		data-testid="app-shell"
+	>
 		if opts.Header != nil {
-			<header id="shell-header" class="flex-none z-10">
+			<header id="shell-header" class={ utils.MergeClasses("flex-none z-10", opts.HeaderClasses) }>
 				@opts.Header
 			</header>
 		}
-		// Main content area, including optional sidebars
 		<div class="flex-auto w-full h-full flex overflow-hidden">
-			// Left sidebar, conditional rendering with inline classes
 			if opts.SidebarLeft != nil {
-				<aside id="sidebar-left" class="flex-none overflow-x-hidden overflow-y-auto w-auto">
+				<aside id="sidebar-left" class={ utils.MergeClasses("flex-none overflow-x-hidden overflow-y-auto w-auto", opts.SidebarLeftClasses) }>
 					@opts.SidebarLeft
 				</aside>
 			}
-			// Page main content
 			<div id="page-content" class="flex-1 overflow-x-hidden flex flex-col">
-				// Page header, conditional rendering with inline classes
 				if opts.PageHeader != nil {
-					<header id="page-header" class="flex-none">
+					<header id="page-header" class={ utils.MergeClasses("flex-none", opts.PageHeaderClasses) }>
 						@opts.PageHeader
 					</header>
 				}
-				// Main content slot, default with inline classes
 				<main id="content" class="flex-auto">
 					{ children... }
 				</main>
-				// Page footer, conditional rendering with inline classes
 				if opts.PageFooter != nil {
-					<footer id="page-footer" class="flex-none">
+					<footer id="page-footer" class={ utils.MergeClasses("flex-none", opts.PageFooterClasses) }>
 						@opts.PageFooter
 					</footer>
 				}
 			</div>
-			// Right sidebar, conditional rendering with inline classes
 			if opts.SidebarRight != nil {
-				<aside id="sidebar-right" class="flex-none overflow-x-hidden overflow-y-auto w-auto">
+				<aside id="sidebar-right" class={ utils.MergeClasses("flex-none overflow-x-hidden overflow-y-auto w-auto", opts.SidebarRightClasses) }>
 					@opts.SidebarRight
 				</aside>
 			}
 		</div>
-		// Footer component, conditional rendering with inline classes
 		if opts.Footer != nil {
-			<footer id="shell-footer" class="flex-none">
+			<footer id="shell-footer" class={ utils.MergeClasses("flex-none", opts.FooterClasses) }>
 				@opts.Footer
 			</footer>
 		}

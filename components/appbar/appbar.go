@@ -5,21 +5,23 @@ import (
 	"github.com/localrivet/templwind"
 )
 
+type Class interface {
+	Border() string
+	BorderTop() string
+	BorderBottom() string
+	BorderLeft() string
+	BorderRight() string
+}
+
 // Opts defines the options for the AppBar component
 type Opts struct {
-	Background        string
-	Border            string
-	Padding           string
-	Shadow            string
-	Spacing           string
-	GridColumns       string
-	Gap               string
-	RegionRowMain     string
-	RegionRowHeadline string
-	Lead              templ.Component
-	Trail             templ.Component
-	Label             string
-	Labelledby        string
+	AppBarClasses   string
+	Lead            templ.Component
+	LeadClasses     string
+	Trail           templ.Component
+	TrailClasses    string
+	Headline        templ.Component
+	HeadlineClasses string
 }
 
 // New creates a new component
@@ -32,78 +34,59 @@ func NewWithOpts(opt *Opts) templ.Component {
 	return templwind.NewWithOpts(tpl, opt)
 }
 
-// BuildOpts builds the options with the given opt
-func BuildOpts(opts ...templwind.OptFunc[Opts]) *Opts {
-	return templwind.BuildOpts(defaultOpts, opts...)
+// WithOpts builds the options with the given opt
+func WithOpts(opts ...templwind.OptFunc[Opts]) *Opts {
+	return templwind.WithOpts(defaultOpts, opts...)
 }
 
 // DefaultOpts provides the default options for the AppBar component
 func defaultOpts() *Opts {
 	return &Opts{
-		Background:        "bg-surface-100-800-token",
-		Border:            "",
-		Padding:           "p-4",
-		Shadow:            "",
-		Spacing:           "space-y-4",
-		GridColumns:       "grid-cols-[auto_1fr_auto]",
-		Gap:               "gap-4",
-		RegionRowMain:     "",
-		RegionRowHeadline: "",
-		Label:             "",
-		Labelledby:        "",
+		AppBarClasses:   "app-bar flex flex-col bg-surface-100-800-token space-y-4 p-4 w-full",
+		LeadClasses:     "app-bar-slot-lead flex-none flex justify-between items-center",
+		TrailClasses:    "app-bar-slot-trail flex-none flex items-center space-x-4",
+		HeadlineClasses: "app-bar-row-headline",
 	}
 }
 
-func WithBackground(background string) templwind.OptFunc[Opts] {
-	return func(o *Opts) {
-		o.Background = background
+func AppBarClasses(appBarClasses string) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.AppBarClasses = appBarClasses
 	}
 }
 
-func WithBorder(border string) templwind.OptFunc[Opts] {
-	return func(o *Opts) {
-		o.Border = border
+func Lead(lead templ.Component) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.Lead = lead
 	}
 }
 
-func WithPadding(padding string) templwind.OptFunc[Opts] {
-	return func(o *Opts) {
-		o.Padding = padding
+func LeadClasses(leadClasses string) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.LeadClasses = leadClasses
 	}
 }
 
-func WithShadow(shadow string) templwind.OptFunc[Opts] {
-	return func(o *Opts) {
-		o.Shadow = shadow
+func Trail(trail templ.Component) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.Trail = trail
 	}
 }
 
-func WithSpacing(spacing string) templwind.OptFunc[Opts] {
-	return func(o *Opts) {
-		o.Spacing = spacing
+func TrailClasses(trailClasses string) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.TrailClasses = trailClasses
 	}
 }
 
-func WithGridColumns(gridColumns string) templwind.OptFunc[Opts] {
-	return func(o *Opts) {
-		o.GridColumns = gridColumns
+func Headline(headline templ.Component) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.Headline = headline
 	}
 }
 
-func WithGap(gap string) templwind.OptFunc[Opts] {
-	return func(o *Opts) {
-		o.Gap = gap
-	}
-}
-
-func WithRegionRowMain(regionRowMain string) templwind.OptFunc[Opts] {
-	return func(o *Opts) {
-		o.RegionRowMain = regionRowMain
-	}
-}
-
-func WithRegionRowHeadline(regionRowHeadline string) templwind.OptFunc[Opts] {
-	return func(o *Opts) {
-		o.RegionRowHeadline = regionRowHeadline
+func HeadlineClasses(headlineClasses string) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.HeadlineClasses = headlineClasses
 	}
 }

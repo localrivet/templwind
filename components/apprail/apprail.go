@@ -3,6 +3,7 @@ package apprail
 import (
 	"github.com/a-h/templ"
 	"github.com/localrivet/templwind"
+	"github.com/localrivet/templwind/components/link"
 )
 
 // Opts defines the options for the AppRail component
@@ -18,6 +19,7 @@ type Opts struct {
 	AspectRatio string
 	Lead        templ.Component
 	Trail       templ.Component
+	MenuItems   []*link.Opts
 }
 
 // New creates a new component
@@ -30,9 +32,9 @@ func NewWithOpts(opt *Opts) templ.Component {
 	return templwind.NewWithOpts(tpl, opt)
 }
 
-// BuildOpts builds the options with the given opt
-func BuildOpts(opts ...templwind.OptFunc[Opts]) *Opts {
-	return templwind.BuildOpts(defaultOpts, opts...)
+// WithOpts builds the options with the given opt
+func WithOpts(opts ...templwind.OptFunc[Opts]) *Opts {
+	return templwind.WithOpts(defaultOpts, opts...)
 }
 
 // DefaultOpts provides the default options for the AppRail component
@@ -49,65 +51,72 @@ func defaultOpts() *Opts {
 		AspectRatio: "aspect-square",
 		Lead:        nil,
 		Trail:       nil,
+		MenuItems:   make([]*link.Opts, 0),
 	}
 }
 
-func WithBackground(background string) templwind.OptFunc[Opts] {
+func Background(background string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Background = background
 	}
 }
 
-func WithBorder(border string) templwind.OptFunc[Opts] {
+func Border(border string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Border = border
 	}
 }
 
-func WithWidth(width string) templwind.OptFunc[Opts] {
+func Width(width string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Width = width
 	}
 }
 
-func WithHeight(height string) templwind.OptFunc[Opts] {
+func Height(height string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Height = height
 	}
 }
 
-func WithGap(gap string) templwind.OptFunc[Opts] {
+func Gap(gap string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Gap = gap
 	}
 }
 
-func WithHover(hover string) templwind.OptFunc[Opts] {
+func Hover(hover string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Hover = hover
 	}
 }
 
-func WithActive(active string) templwind.OptFunc[Opts] {
+func Active(active string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Active = active
 	}
 }
 
-func WithSpacing(spacing string) templwind.OptFunc[Opts] {
+func Spacing(spacing string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Spacing = spacing
 	}
 }
 
-func WithAspectRatio(aspectRatio string) templwind.OptFunc[Opts] {
+func AspectRatio(aspectRatio string) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.AspectRatio = aspectRatio
 	}
 }
 
-func WithLead(lead templ.Component) templwind.OptFunc[Opts] {
+func Lead(lead templ.Component) templwind.OptFunc[Opts] {
 	return func(opts *Opts) {
 		opts.Lead = lead
+	}
+}
+
+func MenuItems(menuItems ...*link.Opts) templwind.OptFunc[Opts] {
+	return func(opts *Opts) {
+		opts.MenuItems = append(opts.MenuItems, menuItems...)
 	}
 }

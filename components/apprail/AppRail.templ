@@ -2,11 +2,12 @@ package apprail
 
 import (
 	"fmt"
+	"github.com/localrivet/templwind/components/link"
 )
 
 templ tpl(opts *Opts) {
 	<div
-		class={ fmt.Sprintf("app-rail grid grid-rows-[auto_1fr_auto] overflow-y-auto %s %s %s %s %s", opts.Background, opts.Border, opts.Width, opts.Height, opts.Gap) }
+		class={ fmt.Sprintf("app-rail border-r grid grid-rows-[auto_1fr_auto] overflow-y-auto bg-slate-300 dark:bg-slate-90 %s %s %s %s %s", opts.Background, opts.Border, opts.Width, opts.Height, opts.Gap) }
 		data-testid="app-rail"
 	>
 		if opts.Lead != nil {
@@ -14,7 +15,19 @@ templ tpl(opts *Opts) {
 				@opts.Lead
 			</div>
 		}
-		<div class="app-bar-default box-border">
+		<div class="app-bar-default flex flex-col w-full box-border divide-y">
+			for _, item := range opts.MenuItems {
+				@link.NewWithOpts(item) {
+					<div
+						class="w-full flex flex-col items-center justify-center space-y-1 p-2 text-xs text-center dark:text-white"
+					>
+						if item.Icon != "" {
+							@templ.Raw(item.Icon)
+						}
+						<span>{ item.Title }</span>
+					</div>
+				}
+			}
 			{ children... }
 		</div>
 		if opts.Trail != nil {

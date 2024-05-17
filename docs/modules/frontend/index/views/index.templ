@@ -1,0 +1,27 @@
+package views
+
+import (
+	"github.com/labstack/echo/v4"
+	"github.com/localrivet/templwind/layouts"
+	"github.com/localrivet/templwind/layouts/base"
+)
+
+templ Index(e echo.Context) {
+	@layouts.BaseLayout(
+		base.EchoCtx(e),
+		base.Title("Index"),
+		base.Stylesheets(
+			"/static/css/output.css",
+		),
+		base.HeadScripts(
+			"/static/js/htmx.min.js",
+		),
+		base.FooterScripts(
+			"https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js",
+		),
+		base.BodyCss("h-full overflow-hidden"),
+	) {
+		<h1>Page Content</h1>
+		<p>This is the main content area.</p>
+	}
+}
